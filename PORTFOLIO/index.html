@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Rishi Raj Singh | God Mode Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Libraries -->
+<script src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Poppins,sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* GALAXY BG */
+#bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,.4);
+  z-index:10;
+}
+nav h1{
+  font-family:Orbitron;
+  color:#00ffd5;
+}
+nav ul{display:flex;gap:30px;list-style:none}
+nav a{color:#fff;text-decoration:none;opacity:.8}
+nav a:hover{opacity:1;color:#00ffd5}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  align-items:center;
+  padding:120px 60px;
+}
+.hero h2{
+  font-size:3.8rem;
+  font-family:Orbitron;
+}
+.hero span{color:#00ffd5}
+.hero p{margin:20px 0;opacity:.8}
+.hero a{
+  padding:14px 30px;
+  border-radius:40px;
+  background:linear-gradient(135deg,#00ffd5,#008cff);
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  margin-right:15px;
+}
+
+canvas#three{
+  width:100%;
+  height:420px;
+}
+
+section{padding:120px 60px}
+section h2{
+  font-family:Orbitron;
+  font-size:2.8rem;
+  margin-bottom:40px;
+  color:#00ffd5;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
+}
+.card{
+  padding:30px;
+  border-radius:25px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(25px);
+  box-shadow:0 0 40px rgba(0,255,213,.15);
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  opacity:.6
+}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav>
+  <h1>Rishi Raj Singh</h1>
+  <ul>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <h2>Hi, I'm <span>Rishi Raj Singh</span><br><span id="typing"></span></h2>
+    <p>Frontend • 3D Web • Competitive Programmer</p>
+<a href="#" download class="cv-btn">Download CV</a>
+    <a href="https://github.com/YOUR_GITHUB" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+  </div>
+  <canvas id="three"></canvas>
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="card">
+  I am <strong>Rishi Raj Singh</strong>, a passionate and driven developer who enjoys building
+  high‑performance web applications, immersive 3D experiences, and solving complex
+  problems through clean and efficient code. I love blending strong logic with
+  modern UI/UX to create impactful digital products.
+</div>
+</section>
+
+<section id="ai">
+<h2>AI Mode</h2>
+<div class="cards">
+  <div class="card ai-card">🤖 Building AI-powered web experiences</div>
+  <div class="card ai-card">🧠 Exploring ML concepts & intelligent UIs</div>
+  <div class="card ai-card">⚡ Using AI to enhance productivity & creativity</div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="cards">
+  <div class="card">HTML • CSS • JavaScript</div>
+  <div class="card">React • Node.js</div>
+  <div class="card">Three.js • WebGL</div>
+  <div class="card">DSA • Competitive Coding</div>
+</div>
+</section>
+
+<section id="timeline">
+<h2>My Journey</h2>
+<div class="cards">
+  <div class="card">🚀 Started coding & learning core programming</div>
+  <div class="card">💡 Built web projects & explored 3D graphics</div>
+  <div class="card">🏆 Entered competitive programming & rankings</div>
+  <div class="card">🔥 Now building next‑gen interactive web apps</div>
+</div>
+</section>
+
+<section id="stats">
+<h2>Achievements</h2>
+<div class="cards">
+  <div class="card">🏆 LeetCode Top 15%</div>
+  <div class="card">🔥 CodeChef 1600+</div>
+  <div class="card">🎮 Valorant Diamond</div>
+  <div class="card">💳 Demo Card XXXX‑1234</div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="card">📧 yourmail@example.com</div>
+</section>
+
+<footer>© 2025 Rishi Raj Singh • GOD MODE ENABLED</footer>
+
+<script>
+/* ===== GALAXY BG ===== */
+const bg=document.getElementById('bg');
+const bgs=new THREE.Scene();
+const bgc=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,1,1000);
+const bgr=new THREE.WebGLRenderer({canvas:bg});
+bgr.setSize(innerWidth,innerHeight);
+
+const stars=new THREE.BufferGeometry();
+const starCount=2000;
+const pos=new Float32Array(starCount*3);
+for(let i=0;i<starCount*3;i++)pos[i]=(Math.random()-.5)*1000;
+stars.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const smat=new THREE.PointsMaterial({color:0x00ffd5,size:1});
+bgs.add(new THREE.Points(stars,smat));
+bgc.position.z=200;
+
+/* ===== MAIN 3D ===== */
+const canvas=document.getElementById('three');
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,canvas.clientWidth/canvas.clientHeight,.1,1000);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true});
+renderer.setSize(canvas.clientWidth,canvas.clientHeight);
+
+const geo=new THREE.TorusKnotGeometry(1.2,.4,150,16);
+const mat=new THREE.MeshStandardMaterial({color:0x00ffd5,metalness:.9,roughness:.1});
+const mesh=new THREE.Mesh(geo,mat);
+scene.add(mesh);
+
+const light=new THREE.PointLight(0xffffff,2);
+light.position.set(5,5,5);
+scene.add(light);
+camera.position.z=4;
+
+let mx=0,my=0;
+let velocityX=0,velocityY=0;
+let isDragging=false;
+let lastX=0,lastY=0;
+window.addEventListener('mousedown',e=>{
+  isDragging=true;
+  lastX=e.clientX;
+  lastY=e.clientY;
+});
+
+window.addEventListener('mouseup',()=>isDragging=false);
+
+window.addEventListener('mousemove',e=>{
+  if(isDragging){
+    velocityX=(e.clientX-lastX)*0.002;
+    velocityY=(e.clientY-lastY)*0.002;
+    lastX=e.clientX;
+    lastY=e.clientY;
+  }
+  mx=(e.clientX/innerWidth-.5)*2;
+  my=(e.clientY/innerHeight-.5)*2;
+});
+
+function animate(){
+  requestAnimationFrame(animate);
+  mesh.rotation.y+=0.01+velocityX+mx*0.02;
+  mesh.rotation.x+=0.01+velocityY+my*0.02;
+  velocityX*=0.95;
+  velocityY*=0.95;
+  bgs.rotation.y+=0.0005;
+  renderer.render(scene,camera);
+  bgr.render(bgs,bgc);
+}
+animate();
+
+/* Typing Effect */
+const roles=["Next‑Gen Web Experiences","Interactive 3D Websites","High‑Performance UIs"];
+let i=0,j=0,el=document.getElementById('typing');
+function type(){
+  if(j<roles[i].length){el.textContent+=roles[i][j++];}
+  else setTimeout(()=>erase(),1200);
+}
+function erase(){
+  if(j>0){el.textContent=roles[i].substring(0,--j);}
+  else{i=(i+1)%roles.length;}
+}
+setInterval(()=>{j===0?type():erase()},120);
+
+
+/* GSAP */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('section',{opacity:0,y:80,stagger:.2,scrollTrigger:{trigger:'section',start:'top 80%'}});
+</script>
+
+</body>
+</html>
+
